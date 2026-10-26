@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "Printerrenta/psi-notification-service",
+  "sourceCommit": "37249f476c37f1a8a439c8c0a33f10bba025dd8f",
+  "sourceBranch": "main",
+  "history": "Independent public snapshots; no private Git history",
+  "files": [
+    {
+      "path": ".dockerignore",
+      "sha256": "468f4a2974ffcb75eb4e8d9a1c02ac254e208327e2751a8d2925a79db175f4fc"
+    },
+    {
+      "path": ".github/workflows/public-safety.yml",
+      "sha256": "b2496e36f4d1ef71234ffe5b349a9c449a8f45c575de594b23a41ddb3badebf7"
+    },
+    {
+      "path": ".github/workflows/verify.yml",
+      "sha256": "d2774f4323ef92afbd77a488408b452cee4acbec501d63ee6afce9497d9898f8"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "d1982c33f2569ecce13df2be7755938cf07ca2b4ba385409d1aeda80da9794c4"
+    },
+    {
+      "path": ".mvn/wrapper/maven-wrapper.properties",
+      "sha256": "8f2a4438810348270d9d98f8d6d530541ddb7271e373db207e8ac381e0e35b62"
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "3853e20fc24fff825acd1611000a7d6f4f471d421c4d27d27985413f7247c144"
+    },
+    {
+      "path": "README.md",
+      "sha256": "7ebf682f55f349751ddc65bcb476e770ecc59aaed4e46a8edc852044259a8ef0"
+    },
+    {
+      "path": "mvnw",
+      "sha256": "cae96cef89ebea3531221f4ae17c23cf8edf67d00eae8306d4186ae1bbed4d02"
+    },
+    {
+      "path": "mvnw.cmd",
+      "sha256": "4a361e1374a3e5ad6d03e18e9adc0cf181ac5058ac6203b76f0ba3b456b56481"
+    },
+    {
+      "path": "package.json",
+      "sha256": "7d6c5fdc356373f5457af378f9c3ee478430e6b945b4eda958d16dd8acb823de"
+    },
+    {
+      "path": "pom.xml",
+      "sha256": "ba75a3b2346b30d62fc8539b9f87bc549cece1ca5733b4502ffe623a23968017"
+    },
+    {
+      "path": "scripts/build.mjs",
+      "sha256": "5a344ccaa4510752234842e191217a9e549c66b40f938096b79e82fb775c6980"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/HelloController.java",
+      "sha256": "3eca0a6fd86300a4267aa80648b2e420a192a3db4f63a58c5591389c016810ec"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/NotificationServiceApplication.java",
+      "sha256": "9f67fda8d7160cbb12af9dd95edc60fb2c12d2c370db297e253ff3608467bf3c"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/auth/AppUser.java",
+      "sha256": "55a11a06cc6bffe0419053948110e8bfdcabbf2d76cb549e2d8846143fdd6ebb"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/auth/CurrentUser.java",
+      "sha256": "b427512082ff59d531521e0e06f8ba01bec5d64cf90d6a880f0244d461dd26ff"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/auth/HttpUserIdentityResolver.java",
+      "sha256": "92788e58bcc340308faa75e04fc9570905447a5b3588d78692b6e025e9332c53"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/auth/InternalSecurityConfiguration.java",
+      "sha256": "f169bd2d048f42510203d9ccf52ba383cacc6ece5c863c0bd7dc6ba1eec334d0"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/auth/NeonJwtDecoder.java",
+      "sha256": "0224e4168273d8fee61fbcb1d1ce9d3dc1c15f230ddef1112397ee6e13c68605"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/auth/RemoteJwksSigningKeyProvider.java",
+      "sha256": "af185042a79156d5569a8196d17a61b169ec111c5a27531c90675c8e2671ec5f"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/auth/SecurityConfiguration.java",
+      "sha256": "4d8f0adbd6e1c644cc4d6334c6fb3a47e014701f4b13994b7ce30deeae9238bd"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/auth/SigningKeyProvider.java",
+      "sha256": "7cd2070eac244309dea3ffab1e5dd311b8831bc2dea10d92199b2ffb5e1690bb"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/auth/SpringSecurityCurrentUser.java",
+      "sha256": "bea618a9e724a57ab1dcd9495721e5e71701aded66e69ff47a8ff9b37c1e0c37"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/auth/UserIdentityResolver.java",
+      "sha256": "eb6db6f36a7e6c46d9afdf7e97c0944f6de05512e90c0c14881a48915f91276f"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/auth/UserJwtAuthenticationConverter.java",
+      "sha256": "e2581abdd25e5d485c39e7ffebd1e03500328534ba95a21b2d5bbf1eaa1cf3ec"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/auth/UserRole.java",
+      "sha256": "4585c570da0fecfd6ba62aea85d6c5884f0bfc0879a6a43eebf41ff0be36c80a"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/configuration/RuntimeConfiguration.java",
+      "sha256": "7593d24e01b3c3ecb366de884c34e9c326cd28babd785b166a451b93c6dc74bf"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/events/DomainEvent.java",
+      "sha256": "b875cfd2b30bfc630c2b161ceb02ad5f7b0915e3254ef40344f50c6f97b3d803"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/health/HealthController.java",
+      "sha256": "b9ab9382d55136425181d2adc7895a21fc5e1bc2ca1016d5205857c86881d9e3"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/neon/NeonEnvironmentPostProcessor.java",
+      "sha256": "8a78503c81d4eee8f2dd1f6dff2f15afa5e244d549f91e4b19cf32ee05633b7a"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/notifications/JdbcNotificationRepository.java",
+      "sha256": "db4e82917a4acd0bf6a76bb83ddb5d5d81eee0216dffe9fdf54252455b5f7a6f"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/notifications/Notification.java",
+      "sha256": "42bf33f40d626b1cc11bc2f9a75e1a163ea2572d2705996301b72684c577db9d"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/notifications/NotificationController.java",
+      "sha256": "3cc1b539069a3d0c8122ae8a74b20e2eeb4435b791fc1a4e4f31a7ebb0494797"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/notifications/NotificationExceptionHandler.java",
+      "sha256": "b60acff9f3f8ddcbe3d06c68808b5fc08eb99ca6dff874204fe981d09102da08"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/notifications/NotificationInbox.java",
+      "sha256": "4686a4921055b1ad9e9e0ceb96e797d658c509474421b2b883f8266fd44f4e0a"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/notifications/NotificationNotFoundException.java",
+      "sha256": "2ce42ff294362c3f3c7f3150bb78d13520b70dc327596884f82211845b2b795a"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/notifications/NotificationRepository.java",
+      "sha256": "5242bdc3ce44a79c7a22d32a85bd59478d6a66345fa53f668615e205d86a0097"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/notifications/NotificationService.java",
+      "sha256": "b43ed85c103d4f6acd397800e09626c2b2a9a0844a44f6a04c811b026257354a"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/notifications/PubSubPushController.java",
+      "sha256": "9cbaf2aeba1675c6bfe5a57c5b260747cc18d86820c48fe7b19d55a932a13195"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/notifications/RentalEventConsumer.java",
+      "sha256": "6c35d551334430a8f60ba0d8aabca4fdc078e33e235f6f157dd16dc27fdee268"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/transport/MetadataServiceCredentials.java",
+      "sha256": "9c7f5e5a9990ef08805ca344091fb446b6766283510743b75cbc0069d712a562"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/transport/ServiceCredentials.java",
+      "sha256": "dfdfc67998564ef5d8d179320844fdc3496ea6d224959cc2b8e92714bd9658a2"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/transport/ServiceHttpClient.java",
+      "sha256": "1b75f43e78061c79fccab2c39fbfbca7f464dcbebd773a57d0ee6e4b203f13b6"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/transport/TransportExceptionHandler.java",
+      "sha256": "a4b936df90bdaacdb59233b8d4fe6e8218b13b6a31869baa90c6edab964c138e"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/transport/UpstreamUnavailableException.java",
+      "sha256": "ae430832030b4f71fde5e83cf9e97a806b04a899c461c696db9d573a133f22bd"
+    },
+    {
+      "path": "src/main/resources/META-INF/spring.factories",
+      "sha256": "b74a889899c32837022ca14be20924987e6f7c198bf46a2cdb3abfbcf203e491"
+    },
+    {
+      "path": "src/main/resources/application.properties",
+      "sha256": "2b023b2418e66997718ae08501d28024f61e34b29659fc77b34a1a776ea48f7d"
+    },
+    {
+      "path": "src/main/resources/db/migration/V1__notifications.sql",
+      "sha256": "9483a5605dec0f48f92200e239ab77cc9595159ca972ff90b76289ab73ae7d6c"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/architecture/ServiceArchitectureTest.java",
+      "sha256": "1a558bc1f29a555626662c545b83e948cae60ed48d88842dd4562b136ac5c5ff"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/auth/NeonJwtDecoderTest.java",
+      "sha256": "87cacb8fde237ce9f0dec839b512b8bda3dc8e52aeda55fe376761d871adbd4e"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/auth/ServiceSecurityTest.java",
+      "sha256": "c287afef2968a7664d5944dce8d7391d0ac0aae72cebadd69579ab7cafeeab30"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/auth/UserJwtAuthenticationConverterTest.java",
+      "sha256": "55ef3a03d014df1e7e9d124f57c7e8881634d4bf1c0dc7f088d5e2c83d70c8e3"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/events/EventWireContractTest.java",
+      "sha256": "85a551d723c6c8db45f8e9b75676d50849539bf0af49d98439ae74239fb207c1"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/neon/NeonEnvironmentPostProcessorTest.java",
+      "sha256": "cae352ed2a1ed1347e82baffb11ae3a07939c6980bdef663f64b499991da9ea8"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/notifications/AccountingEventConsumerTest.java",
+      "sha256": "4469147fe8205d8cbcdbfb8e7fe0ff55d49033c3ca54709d7412d69291d67373"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/notifications/NotificationIT.java",
+      "sha256": "7c0aaefdc69809a8fd7f06893cecde48df5f5d3584725d00608b993cf0239a00"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/notifications/NotificationServiceTest.java",
+      "sha256": "5d1f97088f1a3f54400bbd9d6e43379dd57e77b54222c8eb32f165d79d582a8f"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/notifications/RentalEventConsumerTest.java",
+      "sha256": "72a2b0d9a7818088a68295957f29d270daa59be37332d2f8e1996f2527cbaba7"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/notifications/RepairEventConsumerTest.java",
+      "sha256": "c00993ba244c51034b17f677d3b98f1f97201a310bca17cd625e027303274762"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/notifications/RepairEventIT.java",
+      "sha256": "0f6e8846462ec2d1a6215b23c79c4249f53a623f946fd67cf3407dbfe3c0f56c"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/transport/ServiceHttpClientTest.java",
+      "sha256": "0e87e2f5a3ea06748ada0d8f526e8f2b0d29895a90fc89b8535bef1fa6de4a4f"
+    },
+    {
+      "path": "src/test/resources/contracts/repair-request-created-v1.json",
+      "sha256": "41fd7fe93f43486fbd88fe444c4f5e0d55d85e9344859ec922542fa23dabd57b"
+    }
+  ],
+  "byteIdenticalSourceFiles": [
+    ".dockerignore",
+    ".gitignore",
+    ".mvn/wrapper/maven-wrapper.properties",
+    "Dockerfile",
+    "mvnw",
+    "mvnw.cmd",
+    "package.json",
+    "pom.xml",
+    "scripts/build.mjs",
+    "src/main/java/lt/printerrental/HelloController.java",
+    "src/main/java/lt/printerrental/NotificationServiceApplication.java",
+    "src/main/java/lt/printerrental/auth/AppUser.java",
+    "src/main/java/lt/printerrental/auth/CurrentUser.java",
+    "src/main/java/lt/printerrental/auth/HttpUserIdentityResolver.java",
+    "src/main/java/lt/printerrental/auth/InternalSecurityConfiguration.java",
+    "src/main/java/lt/printerrental/auth/NeonJwtDecoder.java",
+    "src/main/java/lt/printerrental/auth/RemoteJwksSigningKeyProvider.java",
+    "src/main/java/lt/printerrental/auth/SecurityConfiguration.java",
+    "src/main/java/lt/printerrental/auth/SigningKeyProvider.java",
+    "src/main/java/lt/printerrental/auth/SpringSecurityCurrentUser.java",
+    "src/main/java/lt/printerrental/auth/UserIdentityResolver.java",
+    "src/main/java/lt/printerrental/auth/UserJwtAuthenticationConverter.java",
+    "src/main/java/lt/printerrental/auth/UserRole.java",
+    "src/main/java/lt/printerrental/configuration/RuntimeConfiguration.java",
+    "src/main/java/lt/printerrental/events/DomainEvent.java",
+    "src/main/java/lt/printerrental/health/HealthController.java",
+    "src/main/java/lt/printerrental/neon/NeonEnvironmentPostProcessor.java",
+    "src/main/java/lt/printerrental/notifications/JdbcNotificationRepository.java",
+    "src/main/java/lt/printerrental/notifications/Notification.java",
+    "src/main/java/lt/printerrental/notifications/NotificationController.java",
+    "src/main/java/lt/printerrental/notifications/NotificationExceptionHandler.java",
+    "src/main/java/lt/printerrental/notifications/NotificationInbox.java",
+    "src/main/java/lt/printerrental/notifications/NotificationNotFoundException.java",
+    "src/main/java/lt/printerrental/notifications/NotificationRepository.java",
+    "src/main/java/lt/printerrental/notifications/NotificationService.java",
+    "src/main/java/lt/printerrental/notifications/PubSubPushController.java",
+    "src/main/java/lt/printerrental/notifications/RentalEventConsumer.java",
+    "src/main/java/lt/printerrental/transport/MetadataServiceCredentials.java",
+    "src/main/java/lt/printerrental/transport/ServiceCredentials.java",
+    "src/main/java/lt/printerrental/transport/ServiceHttpClient.java",
+    "src/main/java/lt/printerrental/transport/TransportExceptionHandler.java",
+    "src/main/java/lt/printerrental/transport/UpstreamUnavailableException.java",
+    "src/main/resources/META-INF/spring.factories",
+    "src/main/resources/application.properties",
+    "src/main/resources/db/migration/V1__notifications.sql",
+    "src/test/java/lt/printerrental/architecture/ServiceArchitectureTest.java",
+    "src/test/java/lt/printerrental/auth/NeonJwtDecoderTest.java",
+    "src/test/java/lt/printerrental/auth/ServiceSecurityTest.java",
+    "src/test/java/lt/printerrental/auth/UserJwtAuthenticationConverterTest.java",
+    "src/test/java/lt/printerrental/events/EventWireContractTest.java",
+    "src/test/java/lt/printerrental/neon/NeonEnvironmentPostProcessorTest.java",
+    "src/test/java/lt/printerrental/notifications/AccountingEventConsumerTest.java",
+    "src/test/java/lt/printerrental/notifications/NotificationIT.java",
+    "src/test/java/lt/printerrental/notifications/NotificationServiceTest.java",
+    "src/test/java/lt/printerrental/notifications/RentalEventConsumerTest.java",
+    "src/test/java/lt/printerrental/notifications/RepairEventConsumerTest.java",
+    "src/test/java/lt/printerrental/notifications/RepairEventIT.java",
+    "src/test/java/lt/printerrental/transport/ServiceHttpClientTest.java",
+    "src/test/resources/contracts/repair-request-created-v1.json"
+  ],
+  "executableFiles": [
+    "mvnw"
+  ],
+  "omittedCategories": [
+    "production deployment settings",
+    "private release evidence",
+    "credentials",
+    "private Git history",
+    "publisher credentials and workflow"
+  ]
+}
