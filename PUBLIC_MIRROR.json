@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceRepository": "Printerrenta/psi-notification-service",
-  "sourceCommit": "37249f476c37f1a8a439c8c0a33f10bba025dd8f",
+  "sourceCommit": "82fa4ab5185c826008b15ba798d5a3ff6697278c",
   "sourceBranch": "main",
   "history": "Independent public snapshots; no private Git history",
   "files": [
@@ -15,7 +15,7 @@
     },
     {
       "path": ".github/workflows/verify.yml",
-      "sha256": "d2774f4323ef92afbd77a488408b452cee4acbec501d63ee6afce9497d9898f8"
+      "sha256": "34532fe107d38fa797368a68380e5236e94bfee7d85e35320b3d7dd9ed9ea59e"
     },
     {
       "path": ".gitignore",
@@ -31,7 +31,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "7ebf682f55f349751ddc65bcb476e770ecc59aaed4e46a8edc852044259a8ef0"
+      "sha256": "9960b9de6adcfae32826d49e38dea0de65fe16d57ac4646204889debeb7040d3"
     },
     {
       "path": "mvnw",
