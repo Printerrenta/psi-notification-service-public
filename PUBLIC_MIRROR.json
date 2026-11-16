@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceRepository": "Printerrenta/psi-notification-service",
-  "sourceCommit": "82fa4ab5185c826008b15ba798d5a3ff6697278c",
+  "sourceCommit": "ae28b68f4252a4566b97d27f95824c7fa2093451",
   "sourceBranch": "main",
   "history": "Independent public snapshots; no private Git history",
   "files": [
@@ -31,7 +31,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "9960b9de6adcfae32826d49e38dea0de65fe16d57ac4646204889debeb7040d3"
+      "sha256": "275cec1a50ce841d908584211a7bb629f48f41cc048b5a95e2eaccb9334b3378"
     },
     {
       "path": "mvnw",
