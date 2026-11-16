@@ -8,6 +8,15 @@ have separate PostgreSQL databases and restricted credentials; the gateway has n
 Controllers delegate use cases, domain objects enforce invariants, and HTTP/JDBC/JPA
 adapters implement local ports. Business models and SQL are not shared between services.
 
+## Notification delivery and access
+
+- Domain events arrive through an internal Pub/Sub push endpoint. The inbox
+  deduplicates repeated delivery of the same event.
+- GET /api/notifications lists notifications visible to the current user.
+- PATCH /api/notifications/{id}/read marks an accessible notification as read.
+- Customer notification access is owner-scoped. Internal event delivery is not
+  a browser endpoint or a substitute for the authenticated notification API.
+
 ## Build and test
 
 ```sh
