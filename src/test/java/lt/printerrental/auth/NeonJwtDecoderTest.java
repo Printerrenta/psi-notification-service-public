@@ -161,4 +161,46 @@ class NeonJwtDecoderTest {
     org.mockito.Mockito.when(clock.instant()).thenReturn(now.plusSeconds(11));
     assertThat(decoder.decode(nextToken).getSubject()).isEqualTo("customer-a");
   }
+
+  @Test
+  void enforcesOptionalAudienceWhenConfigured() throws Exception {
+    var provider =
+        new RemoteJwksSigningKeyProvider(
+            java.net.URI.create("http://127.0.0.1:" + server.getAddress().getPort() + "/jwks"),
+            java.net.http.HttpClient.newHttpClient(),
+            java.time.Clock.systemUTC());
+    var audienceDecoder = new NeonJwtDecoder("https://auth.example.test/auth", provider, "psi-api");
+
+    var withoutAud = token(claims(), "EdDSA", "key-1", key);
+    assertThatThrownBy(() -> audienceDecoder.decode(withoutAud)).isInstanceOf(JwtException.class);
+
+    var wrongAudClaims = claims();
+    wrongAudClaims.put("aud", "other-app");
+    var wrongAud = token(wrongAudClaims, "EdDSA", "key-1", key);
+    assertThatThrownBy(() -> audienceDecoder.decode(wrongAud)).isInstanceOf(JwtException.class);
+
+    var matchingAudClaims = claims();
+    matchingAudClaims.put("aud", "psi-api");
+    var matchingAud = token(matchingAudClaims, "EdDSA", "key-1", key);
+    assertThat(audienceDecoder.decode(matchingAud).getSubject()).isEqualTo("customer-a");
+  }
+
+  @Test
+  void fallsBackToCachedKeysWhenJwksRefreshFailsAfterTtl() throws Exception {
+    var clock = org.mockito.Mockito.mock(java.time.Clock.class);
+    var now = Instant.now();
+    org.mockito.Mockito.when(clock.instant()).thenReturn(now);
+    var provider =
+        new RemoteJwksSigningKeyProvider(
+            java.net.URI.create("http://127.0.0.1:" + server.getAddress().getPort() + "/jwks"),
+            java.net.http.HttpClient.newHttpClient(),
+            clock);
+    var cachedDecoder = new NeonJwtDecoder("https://auth.example.test/auth", provider);
+    var jwt = token(claims(), "EdDSA", "key-1", key);
+    assertThat(cachedDecoder.decode(jwt).getSubject()).isEqualTo("customer-a");
+
+    server.stop(0);
+    org.mockito.Mockito.when(clock.instant()).thenReturn(now.plusSeconds(301));
+    assertThat(cachedDecoder.decode(jwt).getSubject()).isEqualTo("customer-a");
+  }
 }

@@ -22,8 +22,13 @@ public final class NeonJwtDecoder implements JwtDecoder {
   private final OAuth2TokenValidator<Jwt> validator;
 
   public NeonJwtDecoder(String baseUrl, SigningKeyProvider keys) {
+    this(baseUrl, keys, "");
+  }
+
+  public NeonJwtDecoder(String baseUrl, SigningKeyProvider keys, String expectedAudience) {
     var base = URI.create(baseUrl);
     var issuer = base.getScheme() + "://" + base.getRawAuthority();
+    String audience = expectedAudience == null ? "" : expectedAudience.strip();
     this.keys = keys;
     validator =
         new DelegatingOAuth2TokenValidator<>(
@@ -34,12 +39,16 @@ public final class NeonJwtDecoder implements JwtDecoder {
                       && !jwt.getSubject().isBlank()
                       && jwt.getSubject().length() <= 255
                       && jwt.getExpiresAt() != null
-                      && jwt.getIssuedAt() != null;
+                      && jwt.getIssuedAt() != null
+                      && (audience.isEmpty()
+                          || (jwt.getAudience() != null && jwt.getAudience().contains(audience)));
               return valid
                   ? OAuth2TokenValidatorResult.success()
                   : OAuth2TokenValidatorResult.failure(
                       new OAuth2Error(
-                          "invalid_token", "Required identity or expiry claim missing", null));
+                          "invalid_token",
+                          "Required identity, audience, or expiry claim invalid",
+                          null));
             });
   }
 

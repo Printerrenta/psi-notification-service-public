@@ -15,7 +15,7 @@ public class NotificationController {
 
   @GetMapping
   public NotificationService.Page list(
-      @RequestParam(defaultValue = "0") @Min(0) int page,
+      @RequestParam(defaultValue = "0") @Min(0) @Max(10000) int page,
       @RequestParam(defaultValue = "20") @Min(1) @Max(100) int size) {
     return service.list(page, size);
   }

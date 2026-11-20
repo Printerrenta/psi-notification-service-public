@@ -7,10 +7,13 @@ import java.net.http.*;
 import java.nio.charset.StandardCharsets;
 import java.time.*;
 import java.util.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MetadataServiceCredentials implements ServiceCredentials {
+  private static final Logger log = LoggerFactory.getLogger(MetadataServiceCredentials.class);
   private static final String BASE =
       "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/";
   private final HttpClient http =
@@ -41,6 +44,7 @@ public class MetadataServiceCredentials implements ServiceCredentials {
     var cached = cache.get(key);
     if (cached != null && cached.expires().isAfter(Instant.now().plusSeconds(60)))
       return cached.value();
+    String credentialType = access ? "access" : "identity";
     try {
       var response =
           http.send(
@@ -50,8 +54,13 @@ public class MetadataServiceCredentials implements ServiceCredentials {
                   .GET()
                   .build(),
               HttpResponse.BodyHandlers.ofString());
-      if (response.statusCode() != 200)
+      if (response.statusCode() != 200) {
+        log.warn(
+            "Metadata server returned status {} while fetching {} token",
+            response.statusCode(),
+            credentialType);
         throw new IllegalStateException("Service credentials unavailable");
+      }
       String value;
       Instant expiry;
       if (access) {
@@ -67,8 +76,16 @@ public class MetadataServiceCredentials implements ServiceCredentials {
       return value;
     } catch (InterruptedException error) {
       Thread.currentThread().interrupt();
+      log.warn("Interrupted while fetching {} token from metadata server", credentialType);
       throw new IllegalStateException("Service credentials unavailable");
+    } catch (IllegalStateException error) {
+      throw error;
     } catch (Exception error) {
+      log.warn(
+          "Failed to fetch {} token from metadata server: {}",
+          credentialType,
+          error.getMessage(),
+          error);
       throw new IllegalStateException("Service credentials unavailable");
     }
   }

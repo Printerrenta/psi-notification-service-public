@@ -29,8 +29,11 @@ public class SecurityConfiguration {
   }
 
   @Bean
-  JwtDecoder jwtDecoder(@Value("${NEON_AUTH_BASE_URL}") String base, SigningKeyProvider keys) {
-    return new NeonJwtDecoder(base, keys);
+  JwtDecoder jwtDecoder(
+      @Value("${NEON_AUTH_BASE_URL}") String base,
+      SigningKeyProvider keys,
+      @Value("${NEON_AUTH_AUDIENCE:}") String audience) {
+    return new NeonJwtDecoder(base, keys, audience);
   }
 
   @Bean

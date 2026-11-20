@@ -1,7 +1,9 @@
 package lt.printerrental.notifications;
 
+import java.time.Clock;
 import java.util.*;
 import lt.printerrental.auth.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,26 +11,36 @@ import org.springframework.transaction.annotation.Transactional;
 public class NotificationService {
   private final NotificationRepository repository;
   private final CurrentUser user;
+  private final Clock clock;
 
-  public NotificationService(NotificationRepository repository, CurrentUser user) {
+  @Autowired
+  public NotificationService(NotificationRepository repository, CurrentUser user, Clock clock) {
     this.repository = repository;
     this.user = user;
+    this.clock = clock;
+  }
+
+  public NotificationService(NotificationRepository repository, CurrentUser user) {
+    this(repository, user, Clock.systemUTC());
   }
 
   public record Page(List<Notification> content, int page, int size, long totalElements) {}
 
   @Transactional(readOnly = true)
   public Page list(int page, int size) {
-    var owner = user.isStaff() ? null : user.subject();
-    return new Page(repository.list(owner, page, size), page, size, repository.count(owner));
+    var reader = user.subject();
+    var owner = user.isStaff() ? null : reader;
+    return new Page(
+        repository.list(owner, reader, page, size), page, size, repository.count(owner));
   }
 
   @Transactional
   public Notification read(UUID id) {
-    var n = repository.get(id).orElseThrow(NotificationNotFoundException::new);
-    if (!user.isStaff() && !user.subject().equals(n.ownerSubject()))
+    var reader = user.subject();
+    var n = repository.get(id, reader).orElseThrow(NotificationNotFoundException::new);
+    if (!user.isStaff() && !reader.equals(n.ownerSubject()))
       throw new org.springframework.security.access.AccessDeniedException("Access denied");
-    repository.markRead(id);
-    return repository.get(id).orElseThrow();
+    repository.markRead(id, reader, clock.instant());
+    return repository.get(id, reader).orElseThrow();
   }
 }

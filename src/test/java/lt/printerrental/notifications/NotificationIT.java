@@ -99,6 +99,96 @@ class NotificationIT {
   }
 
   @Test
+  void staffMarkingCustomerNotificationReadDoesNotMarkItReadForCustomer() throws Exception {
+    var event =
+        new DomainEvent(
+            UUID.randomUUID(),
+            1,
+            "RentalRequestCreated",
+            Instant.now(),
+            UUID.randomUUID(),
+            "alice",
+            Map.of());
+    service.accept(event);
+
+    mvc.perform(
+            patch("/api/notifications/" + event.eventId() + "/read")
+                .with(user("staff-1").roles("EMPLOYEE")))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.readAt").isNotEmpty());
+
+    mvc.perform(get("/api/notifications").with(user("staff-1").roles("EMPLOYEE")))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.totalElements").value(1))
+        .andExpect(jsonPath("$.content[0].readAt").isNotEmpty());
+
+    mvc.perform(get("/api/notifications").with(user("alice").roles("CUSTOMER")))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.totalElements").value(1))
+        .andExpect(jsonPath("$.content[0].readAt").value(org.hamcrest.Matchers.nullValue()));
+
+    mvc.perform(get("/api/notifications").with(user("admin-1").roles("ADMIN")))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.totalElements").value(1))
+        .andExpect(jsonPath("$.content[0].readAt").value(org.hamcrest.Matchers.nullValue()));
+
+    assertThat(
+            jdbc.queryForObject(
+                "SELECT read_at FROM notifications.notifications WHERE event_id = ?",
+                java.sql.Timestamp.class,
+                event.eventId()))
+        .isNull();
+
+    mvc.perform(
+            patch("/api/notifications/" + event.eventId() + "/read")
+                .with(user("alice").roles("CUSTOMER")))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.readAt").isNotEmpty());
+
+    mvc.perform(get("/api/notifications").with(user("alice").roles("CUSTOMER")))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.content[0].readAt").isNotEmpty());
+
+    assertThat(
+            jdbc.queryForObject(
+                "SELECT read_at FROM notifications.notifications WHERE event_id = ?",
+                java.sql.Timestamp.class,
+                event.eventId()))
+        .isNotNull();
+  }
+
+  @Test
+  void legacyOwnerReadAtRemainsVisibleOnlyToOwner() throws Exception {
+    var event =
+        new DomainEvent(
+            UUID.randomUUID(),
+            1,
+            "RentalRequestCreated",
+            Instant.now(),
+            UUID.randomUUID(),
+            "alice",
+            Map.of());
+    service.accept(event);
+    jdbc.update(
+        "UPDATE notifications.notifications SET read_at = now() WHERE event_id = ?",
+        event.eventId());
+
+    mvc.perform(get("/api/notifications").with(user("alice").roles("CUSTOMER")))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.content[0].readAt").isNotEmpty());
+
+    mvc.perform(get("/api/notifications").with(user("staff-1").roles("EMPLOYEE")))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.content[0].readAt").value(org.hamcrest.Matchers.nullValue()));
+  }
+
+  @Test
+  void rejectsExcessivePageNumber() throws Exception {
+    mvc.perform(get("/api/notifications").param("page", "10001").with(user("alice").roles("CUSTOMER")))
+        .andExpect(status().isBadRequest());
+  }
+
+  @Test
   void publicAndNeonAuthenticatedRequestsCannotInjectPushEvents() throws Exception {
     mvc.perform(post("/internal/events").contentType("application/json").content("{}"))
         .andExpect(status().isForbidden());
